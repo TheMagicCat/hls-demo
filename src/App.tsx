@@ -1,18 +1,18 @@
 import Hls from 'hls.js'
 import { useEffect, useRef } from 'react'
-// import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
+import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
 // import ffmpeg_core_path from '@ffmpeg/core/dist/ffmpeg-core.js?url'
-// const ffmpeg = createFFmpeg({ corePath: ffmpeg_core_path, log: true })
+const ffmpeg = createFFmpeg({ corePath: '/ffmpeg-core.js', log: true })
 
-// ;(async () => {
-//   await ffmpeg.load()
-//   console.log(ffmpeg)
-// })()
+;(async () => {
+  await ffmpeg.load()
+  console.log(ffmpeg)
+})()
 
 const source = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
 
 
-export const App = ({ msg }: { msg?: string }) => {
+export const App = () => {
   const videoElem = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -34,8 +34,7 @@ export const App = ({ msg }: { msg?: string }) => {
   }, [])
 
   return (
-    <div>
-      <p>{msg ?? 'hello'}</p>
+    <div> 
       <video ref={videoElem} controls autoPlay></video>
     </div>
   )
